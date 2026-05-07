@@ -1,35 +1,68 @@
-# ToDoList
+# ToDoList App
 
-This template should help get you started developing with Vue 3 in Vite.
+Современное приложение для управления задачами, построенное на Vue 3, Tailwind CSS 4 и Lucide icons. Поддерживает CRUD-операции, поиск, фильтрацию и переключение тёмной/светлой темы.
 
-## Recommended IDE Setup
+## Возможности
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Создание, просмотр, редактирование и удаление задач
+- Отметка задач как выполненных/невыполненных
+- Поиск задач по названию
+- Фильтрация по статусу (Все / Выполненные / В ожидании)
+- Переключение тёмной и светлой темы
+- Анимация при добавлении и удалении задач
+- Сохранение данных через Mokky API
 
-## Customize configuration
+## Технологии
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Vue 3** (Composition API, `<script setup>`)
+- **Vite 6**
+- **Tailwind CSS 4**
+- **Lucide Vue Next** (иконки)
+- **Axios** (HTTP-клиент)
+- **Mokky** (бэкенд)
 
-## Project Setup
+## Установка и запуск
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Режим разработки с автоперезагрузкой
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Сборка для продакшена
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Проверка кода ESLint
 
 ```sh
 npm run lint
+```
+
+### Форматирование Prettier
+
+```sh
+npm run format
+```
+
+## Структура проекта
+
+```
+src/
+├── assets/
+│   └── main.css          # Tailwind, transitions, темы
+├── components/
+│   ├── Header.vue         # Поиск, фильтр, переключатель темы
+│   ├── ListTask.vue       # Список задач с анимацией
+│   ├── Task.vue           # Карточка задачи
+│   ├── TaskEditor.vue     # Модалка добавления/редактирования
+│   └── Footer.vue         # Кнопка добавления задачи
+├── App.vue                # Корневой компонент, состояние
+└── main.js                # Точка входа
 ```

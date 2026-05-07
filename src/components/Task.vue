@@ -1,5 +1,5 @@
 <script setup>
-
+import { Pencil, Trash2, Check } from 'lucide-vue-next'
 
 defineProps({
   id: Number,
@@ -9,37 +9,77 @@ defineProps({
   isBackgroundColorLight: Boolean,
 })
 
-const emit = defineEmits(['onClickRemoveTask', 'onClickOpenUpdateModal', 'onUpdateComplete'])
-
-
+defineEmits(['onClickRemoveTask', 'onClickOpenUpdateModal', 'onUpdateComplete'])
 </script>
 
 <template>
-  <div :class="['flex', 'flex-row', 'mb-2', 'border-indigo-500', index !== 0 ? ['border-t-2'] : '']">
-    <div class="flex items-center ml-2">
-      <label :for="'checked-checkbox-' + id" :class="[
-            'ms-3',
-            'flex items-center',
-            'text-4xl',
-            'font-medium',
-            isBackgroundColorLight ? 'text-gray-900' : 'text-white'
-        ]">
+  <div
+    :class="[
+      'flex items-center justify-between w-full max-w-2xl px-4 py-3 rounded-xl transition-colors duration-200',
+      isBackgroundColorLight
+        ? 'bg-white hover:bg-gray-50 border border-gray-200'
+        : 'bg-slate-800 hover:bg-slate-700 border border-slate-700',
+    ]"
+  >
+    <div
+      class="flex items-center gap-3 flex-1 min-w-0 cursor-pointer select-none"
+      @click="$emit('onUpdateComplete')"
+    >
+      <div
+        :class="[
+          'w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 shrink-0',
+          isComplete
+            ? 'bg-indigo-500 border-indigo-500'
+            : isBackgroundColorLight
+              ? 'border-gray-300'
+              : 'border-slate-500',
+        ]"
+      >
         <input
           @change="$emit('onUpdateComplete')"
-          :id="'checked-checkbox-' + id"
+          :id="'task-' + id"
           type="checkbox"
           :checked="isComplete"
-          class="size-6 bg-gray-100 border-4 border-indigo-500 rounded-lg focus:ring-indigo-500 accent-indigo-500"
+          class="sr-only"
         />
-        <span :class="isComplete ? 'line-through ml-2' : 'ml-2'">{{ title }}</span>
-      </label>
+        <Check v-if="isComplete" class="w-3 h-3 text-white stroke-[3]" />
+      </div>
+      <span
+        :class="[
+          'text-lg font-medium truncate transition-all duration-200',
+          isComplete
+            ? 'line-through opacity-50'
+            : isBackgroundColorLight
+              ? 'text-gray-900'
+              : 'text-white',
+        ]"
+      >
+        {{ title }}
+      </span>
     </div>
-    <div class="flex flex-row ml-80 gap-3">
-      <button @click="$emit('onClickOpenUpdateModal')">
-        <img src="/Vector.svg" alt="updateTask" class="w-4 h-4">
+
+    <div class="flex items-center gap-1 ml-4">
+      <button
+        @click="$emit('onClickOpenUpdateModal')"
+        :class="[
+          'p-2 rounded-lg transition-colors duration-200 cursor-pointer',
+          isBackgroundColorLight
+            ? 'text-gray-400 hover:text-indigo-600 hover:bg-indigo-50'
+            : 'text-slate-400 hover:text-indigo-400 hover:bg-slate-700',
+        ]"
+      >
+        <Pencil class="w-4 h-4" />
       </button>
-      <button @click="$emit('onClickRemoveTask')">
-        <img src="/trash-svgrepo-com 1.svg" alt="deleteTask" class="w-4 h-4">
+      <button
+        @click="$emit('onClickRemoveTask')"
+        :class="[
+          'p-2 rounded-lg transition-colors duration-200 cursor-pointer',
+          isBackgroundColorLight
+            ? 'text-gray-400 hover:text-red-600 hover:bg-red-50'
+            : 'text-slate-400 hover:text-red-400 hover:bg-slate-700',
+        ]"
+      >
+        <Trash2 class="w-4 h-4" />
       </button>
     </div>
   </div>

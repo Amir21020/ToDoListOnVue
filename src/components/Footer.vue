@@ -1,13 +1,17 @@
 <script setup>
+import { Plus } from 'lucide-vue-next'
 
-const emit = defineEmits(['openAddTaskModal'])
+defineEmits(['openAddTaskModal'])
 </script>
 
-
 <template>
-  <div class="flex justify-end mt-auto  mr-96  items-end">
-      <button @click="$emit('openAddTaskModal')">
-        <img src="/Add button.svg" alt="addTask">
-      </button>
-    </div>
+  <div class="flex justify-center px-8 py-6">
+    <button
+      @click="$emit('openAddTaskModal')"
+      class="flex items-center gap-2 px-6 py-3 rounded-lg bg-indigo-500 text-white font-medium shadow-lg hover:bg-indigo-600 hover:shadow-xl active:scale-95 transition-all duration-200 cursor-pointer"
+    >
+      <Plus class="w-5 h-5" />
+      <span>Add Task</span>
+    </button>
+  </div>
 </template>

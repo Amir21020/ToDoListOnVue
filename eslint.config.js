@@ -16,4 +16,12 @@ export default [
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
   skipFormatting,
+  {
+    name: 'app/vue-overrides',
+    rules: {
+      'vue/multi-word-component-names': ['error', {
+        ignores: ['Header', 'Footer', 'Task', 'ListTask', 'TaskEditor'],
+      }],
+    },
+  },
 ]
